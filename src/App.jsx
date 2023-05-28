@@ -3,6 +3,7 @@ import Card from "./Card";
 import SearchBox from "./SearchBox";
 import Button from "@mui/material/Button";
 import Loading from "./Loading";
+import ParticlesBg from "particles-bg";
 
 class App extends Component {
   constructor() {
@@ -20,7 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      fetch(import.meta.env.VITE_API_URL )
+      fetch(import.meta.env.VITE_API_URL)
         .then((response) => response.json())
         .then((users) => this.setState({ cats: users }))
         .then((data) => {
@@ -79,21 +80,25 @@ class App extends Component {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {filteredCats.map((user, i) => {
-            return (
-              <>
-                <Card
-                  key={filteredCats[i].id}
-                  thumbnail={filteredCats[i].thumbnail}
-                  unitPrice={filteredCats[i].unitPrice}
-                  productName={filteredCats[i].productName}
-                  url={filteredCats[i].url}
-                />
-              </>
-            );
-          })}
+        <div className="grid justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {filteredCats.map((user, i) => {
+              return (
+                <>
+                  <Card
+                    key={filteredCats[i].id}
+                    thumbnail={filteredCats[i].thumbnail}
+                    unitPrice={filteredCats[i].unitPrice}
+                    productName={filteredCats[i].productName}
+                    url={filteredCats[i].url}
+                  />
+                </>
+              );
+            })}
+          </div>
         </div>
+
+        <ParticlesBg type="polygon" bg={true} />
       </>
     );
   }
