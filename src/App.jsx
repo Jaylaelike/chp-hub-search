@@ -55,6 +55,8 @@ class App extends Component {
     if (!cats) {
       return <div>No data available</div>;
     }
+
+  
     return (
       <>
         <div className="pt-6 pb-8">
@@ -98,7 +100,7 @@ class App extends Component {
           </div>
         </div>
 
-        <ParticlesBg type="cobweb" bg={true} />
+        <ParticlesBg type="polygon" bg={true} />
       </>
     );
   }
