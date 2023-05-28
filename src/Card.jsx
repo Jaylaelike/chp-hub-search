@@ -3,7 +3,7 @@ function Card({ productName, unitPrice, thumbnail, url }) {
   return (
     <>
    
-    <div className="max-w-sm bg-teal-300 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-1">
+    <div className="max-w-sm bg-teal-200 border border-teal-200 rounded-lg shadow dark:bg-teal-800 dark:border-gray-700 p-1">
         <a href={url}>
           <div className="flex flex-col items-center">
           <img className="rounded-lg h-20" src={`${thumbnail}`} alt="thumbnail" />

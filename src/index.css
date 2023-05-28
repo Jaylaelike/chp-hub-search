@@ -4,8 +4,8 @@
 
 :root {
 
-  --clr-bg-dark: #1f2937; /* gray-800 */
-  --clr-bg-light: #fafafa; /* zinc-50 */
+  --clr-bg-dark: #00a298; /* gray-800 */
+  --clr-bg-light: #70efde; /* zinc-50 */
 
   --clr-text-dark: #1f2937; /* gray-200 */
   --clr-text-light: #fafafa; /* zinc-50 */
@@ -22,11 +22,10 @@
 }
 
 
-
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #00a298;;
+    background-color: #70efde;;
   }
   a:hover {
     color: #747bff;
