@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      fetch("https://gainful-delightful-spectrum.glitch.me/products")
+      fetch(import.meta.env.VITE_API_URL )
         .then((response) => response.json())
         .then((users) => this.setState({ cats: users }))
         .then((data) => {
