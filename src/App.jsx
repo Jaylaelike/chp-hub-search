@@ -16,23 +16,25 @@ export default function App() {
   const fetchProducts = async () => {
     if (debouncedSearchTerm) {
       const response = await axios.get(
-        import.meta.env.VITE_API_URL + `?productName_like=${debouncedSearchTerm}`
+        import.meta.env.VITE_API_URL +
+          `?productName_like=${debouncedSearchTerm}`
       );
       return response.data;
     }
 
-    const response = await axios.get(
-      import.meta.env.VITE_API_URL
-    );
+    const response = await axios.get(import.meta.env.VITE_API_URL);
     return response.data;
   };
-  const { data, isLoading, error, isFetching, isError } = useQuery({
+  const { data, isLoading, isFetching, isError, error } = useQuery({
     queryKey: ["cats", debouncedSearchTerm],
     queryFn: fetchProducts,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
 
+  if (isError) {
+    return <h2>{error.message}</h2>;
+  }
   ///console.log(data);
   return (
     <div>
@@ -48,27 +50,37 @@ export default function App() {
         />
       </div>
 
-      {data?.length > 0 && (
-        <div className="grid justify-items-center">
-          {isLoading || (isFetching && <Loading />)}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {data &&
-              data?.map((user) => (
-                <Card
-                  key={user.id}
-                  thumbnail={user.thumbnail}
-                  unitPrice={user.unitPrice}
-                  productName={user.productName}
-                  url={user.url}
-                />
-              ))}
-          </div>
+      {isLoading || isFetching ? (
+        <div className="grid justify-items-center p-20">
+          <Loading />
         </div>
+      ) : (
+        data?.length > 0 &&
+        (isLoading || isFetching ? (
+          <div className="grid justify-items-center p-20">
+            <Loading />
+          </div>
+        ) : (
+          <div className="grid justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {data &&
+                data?.map((user) => (
+                  <Card
+                    key={user.id}
+                    thumbnail={user.thumbnail}
+                    unitPrice={user.unitPrice}
+                    productName={user.productName}
+                    url={user.url}
+                  />
+                ))}
+            </div>
+          </div>
+        ))
       )}
 
       {data?.length === 0 ? (
         <div className="flex justify-center pt-8 gap-3">
-          <p> {`ไม่พบสิ่งที่ค้นหา "${search}"`}</p>
+          <p className="text-5xl"> {`ไม่พบสิ่งที่ค้นหา "${search}"`}</p>
         </div>
       ) : (
         <></>
