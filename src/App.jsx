@@ -35,7 +35,7 @@ export default function App() {
   if (isError) {
     return <h2>{error.message}</h2>;
   }
-  ///console.log(data);
+  console.log(data);
   return (
     <div>
       <div className="p-12 w-screen">
